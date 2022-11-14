@@ -1,72 +1,43 @@
--- phpMyAdmin SQL Dump
--- version 4.6.4
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: May 09, 2018 at 05:51 AM
--- Server version: 5.7.14
--- PHP Version: 7.0.10
+SET SQL_MODE = 'TRADITIONAL';       -- https://dev.mysql.com/doc/refman/5.6/en/sql-mode.html#sqlmode_traditional
+DROP DATABASE IF EXISTS `crud`;
+CREATE DATABASE IF NOT EXISTS `crud` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `crud`;
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
+/* ============================================================================================= */
+/* Table structure for table `students`                                                          */
+/* ============================================================================================= */
+DROP TABLE IF EXISTS `crud`.`students`;
+CREATE TABLE IF NOT EXISTS `crud`.`students` (
+      `id`                          INT          NOT NULL AUTO_INCREMENT                                            COMMENT 'Student Primary Key.'
+    , `name`                        VARCHAR(256) NOT NULL                                                           COMMENT 'Student Name Field.'
+    , `email`                       VARCHAR(512) NOT NULL                                                           COMMENT 'Student Email Address Field.'
+    , `phone`                       VARCHAR(512) NOT NULL                                                           COMMENT 'Student Phone Address Field.'
+    , `createdDate`                 DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP                                 COMMENT 'Student Creation Date          Of Record In A DateTime Format.'
+    , `lastModifiedDate`            DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP     COMMENT 'Student Last Modification Date Of Record In A DateTime Format.'
+    , `createdTimestamp`            TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP                                 COMMENT 'Student Creation Date          Of Record In A Timestamp Format.'
+    , `lastModifiedTimestamp`       TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP     COMMENT 'Student Last Modification Date Of Record In A Timestamp Format.'
+    , PRIMARY KEY (`id`)
+    , UNIQUE INDEX `UDX_STUDENT_EMAILADDRESS` (`email` ASC) VISIBLE
+)
+ENGINE=InnoDB
+DEFAULT CHARSET=utf8mb4
+COLLATE=utf8mb4_0900_ai_ci
+COMMENT 'Contact Table To Manage Known Contacts.'
+;
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `crud`
---
-
--- --------------------------------------------------------
-
---
--- Table structure for table `students`
---
-
-CREATE TABLE `students` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `phone` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `students`
---
-
-INSERT INTO `students` (`id`, `name`, `email`, `phone`) VALUES
-(3, 'Parwiz', 'parwiz.f@gmail.com', '009378976767'),
-(4, 'John Doe', 'johndoe@gmail.com', '999999999'),
-(5, 'Karimja', 'ka@gmail.com', '7333392'),
-(6, 'Jamal', 'ja@gmail.com', '3434343'),
-(7, 'Nawid', 'na@gmail.com', '343434'),
-(8, 'Tom Logan', 'Tom@gmail.com', '7347374347'),
-(12, 'Tom Logan', 'tom@gmail.com', '11111111111'),
-(13, 'Fawad', 'fa@gmail.com', '347374837483'),
-(14, 'Wahid', 'wa@gmail.com', '4354354345');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `students`
---
-ALTER TABLE `students`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `students`
---
-ALTER TABLE `students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/* ============================================================================================= */
+-- Add data for table `students`
+/* ============================================================================================= */
+INSERT INTO `students` (`name`, `email`, `phone`)
+VALUES
+('Jay Rizzo',   'JayRizzo@JayRizzo.us', '+1 (312) 837-5309'),
+('Parwiz',      'parwiz.f@gmail.com',   '009378976767'),
+('John Doe',    'johndoe@gmail.com',    '999999999'),
+('Karimja',     'ka@gmail.com',         '7333392'),
+('Jamal',       'ja@gmail.com',         '3434343'),
+('Nawid',       'na@gmail.com',         '343434'),
+('Tom Logan',   'Tom@gmail.com',        '7347374347'),
+('Tom Logan',   'tom2@gmail.com',       '11111111111'),
+('Fawad',       'fa@gmail.com',         '347374837483'),
+('Wahid',       'wa@gmail.com',         '4354354345')
+;
